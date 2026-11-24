@@ -1,115 +1,121 @@
-# Windows Server – Group Policy Management & Company Security Standards
+# Windows Server – Group Policy Management & Security Policies
 
 ## 1. Project Overview
 
 This project demonstrates practical Windows Server administration using Active Directory and Group Policy Management (GPMC).
 
-The lab simulates a company environment with two departments: HR and IT. Group Policy Objects (GPOs) are used to apply company-wide security standards and department-specific restrictions.
+The lab simulates a company environment with two departments (HR and IT), where Group Policy Objects (GPOs) are used to enforce centralized security standards and department-specific restrictions.
 
-The main objective is to centrally manage Windows user settings and enforce security policies across the domain.
+The main objective is to manage Windows user settings, restrict access to selected administrative tools, and improve workstation security through centralized Group Policy management.
 
 ## 2. Lab Environment
 
-- **Server:** Windows Server
-- **Directory Service:** Active Directory Domain Services (AD DS)
-- **Policy Management:** Group Policy Management Console (GPMC)
-- **Client:** Domain-joined Windows Client
-- **Organizational Units (OUs):**
-  - `HR_Dept`
-  - `IT_Dept`
-- **Departments:** Human Resources (HR) and Information Technology (IT)
+- Operating System: Windows Server
+- Server Role: Active Directory Domain Services (AD DS)
+- Management Tool: Group Policy Management Console (GPMC)
+- Client: Windows Client joined to the domain
+- Domain Structure: Active Directory Domain
+- Organizational Units (OUs):
+  - HR_Dept
+  - IT_Dept
 
-## 3. Group Policy Configuration
+## 3. Project Objectives
 
-Separate Group Policy Objects were created to apply company-wide standards and HR-specific restrictions.
+- Create and manage Group Policy Objects (GPOs).
+- Apply company-wide security standards.
+- Configure department-specific restrictions.
+- Restrict access to selected Windows tools.
+- Configure screen saver security settings.
+- Configure a login security banner.
+- Apply Group Policy updates across the domain.
 
-### 3.1 Company-Wide Security Standards
+## 4. Group Policy Configuration
 
-**GPO Name:** `ComStandars`
+### 4.1 Company-Wide Security Standards
 
-**Scope:** Domain
+GPO Name: ComStandars
+
+Scope: Domain
 
 The following policies were configured:
 
-- **Disable Registry Editor:** Prevents users from accessing Registry Editor.
-- **Screen Saver Timeout:** Configured to 600 seconds (10 minutes).
-- **Password-Protected Screen Saver:** Requires users to authenticate when returning to the computer.
+- Disable Registry Editor (Regedit).
+- Configure Screen Saver Timeout to 600 seconds (10 minutes).
+- Require a password when returning to the computer.
 
-### 3.2 HR-Specific Restrictions
+**Screenshots:**
+- 01-GPO-Configuration.png
+- 02-Regedit-Disabled.png
 
-Three separate GPOs were configured for the HR department:
+### 4.2 HR Department Restrictions
 
-| Policy | Description |
-|---|---|
-| Disable Control Panel | Prevents HR users from accessing Control Panel. |
-| Disable CMD | Restricts access to Command Prompt. |
-| Hide Run | Hides the Run command from the Start menu. |
+Three separate GPOs were configured for the HR department.
 
-These policies are intended to apply to the HR department only.
+#### Disable Control Panel
 
-### 3.3 Login Security Banner
+Prevents HR users from accessing Control Panel.
 
-A separate Group Policy was configured to display a security message before users sign in.
+**Screenshot:**
+- 03-Control-Panel-Blocked.png
 
-This policy demonstrates the use of Windows security settings to display an organizational notice during the logon process.
+#### Disable Command Prompt (CMD)
 
-## 4. Applying Group Policies
+Restricts HR users from accessing Command Prompt.
 
-After configuring the GPOs, Group Policy was refreshed on the client using:
+**Screenshot:**
+- 04-CMD-Disabled.png
 
-```cmd
-gpupdate /force
-```
+#### Hide Run
+
+Hides the Run command from the Start menu.
+
+**Screenshot:**
+- 05-Run-Disabled.png
+
+### 4.3 Login Security Banner
+
+A separate GPO was configured to display a security message before users sign in.
+
+**Screenshot:**
+- 06-Login-Banner.png
+
+## 5. Screen Saver Security Configuration
+
+The screen saver timeout was configured to 600 seconds (10 minutes), with password protection enabled.
+
+This configuration helps protect company computers when users leave their workstations unattended.
+
+**Screenshot:**
+- 07-Lock-Screen.png
+
+## 6. Group Policy Deployment
+
+Group Policy was refreshed on the client computer using:
+
+`gpupdate /force`
 
 This command forces the client to refresh its Group Policy settings.
 
-## 5. Screenshots & Evidence
+## 7. Domain GPO Management
 
-### 5.1 GPO Configuration
+Group Policy Management Console was used to manage the configured GPOs and review their links within the domain and Organizational Units.
 
-![GPO Configuration](Screenshots/01-GPO-Configuration.png)
+**Screenshot:**
+- 09-Domain-GPOs.png
 
-### 5.2 Registry Editor Disabled
+## 8. Skills Demonstrated
 
-![Registry Editor Disabled](Screenshots/02-Regedit-Disabled.png)
+- Active Directory Administration
+- Group Policy Management (GPMC)
+- GPO Creation and Configuration
+- Domain-Level Policy Management
+- Department-Specific Security Restrictions
+- Windows Security Configuration
+- Screen Saver and Workstation Security
+- Centralized IT Administration
 
-### 5.3 Control Panel Restricted
+## 9. Conclusion
 
-![Control Panel Blocked](Screenshots/03-Control-Panel-Blocked.png)
+This project demonstrates how Group Policy Management can be used to enforce centralized security standards and department-specific restrictions within an Active Directory domain.
 
-### 5.4 Command Prompt Disabled
-
-![CMD Disabled](Screenshots/04-CMD-Disabled.png)
-
-### 5.5 Run Command Hidden
-
-![Run Hidden](Screenshots/05-Run-Disabled.png)
-
-### 5.6 Login Security Banner
-
-![Login Banner](Screenshots/06-Login-Banner.png)
-
-### 5.7 Screen Saver and Lock Settings
-
-![Screen Saver and Lock Settings](Screenshots/07-Lock-Screen.png)
-
-### 5.8 Domain GPO Management
-
-![Domain GPOs](Screenshots/09-Domain-GPOs.png)
-
-## 6. Skills Demonstrated
-
-- Active Directory administration.
-- Organizational Unit (OU) management.
-- Group Policy Object (GPO) creation and configuration.
-- Domain-level and department-specific policy management.
-- Windows security policy configuration.
-- Centralized administration using Group Policy Management.
-- Applying Group Policy updates using `gpupdate /force`.
-- Technical documentation and screenshot evidence collection.
-
-## 7. Project Outcome
-
-This lab demonstrates how Group Policy can be used to enforce centralized security standards across a Windows domain while applying department-specific restrictions.
-
-It also demonstrates the importance of organizing GPOs according to their purpose and scope to simplify administration and future policy changes.
+It also demonstrates practical Windows Server administration, policy organization, and centralized security management in a simulated corporate environment.
