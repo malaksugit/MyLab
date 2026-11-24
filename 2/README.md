@@ -21,13 +21,13 @@ The main objective is to centrally manage Windows user settings and enforce secu
 
 ## 3. Group Policy Configuration
 
-The project uses separate GPOs to keep company-wide standards independent from HR-specific restrictions.
+Separate Group Policy Objects were created to apply company-wide standards and HR-specific restrictions.
 
 ### 3.1 Company-Wide Security Standards
 
 **GPO Name:** `ComStandars`
 
-**Linked to:** Domain
+**Scope:** Domain
 
 The following policies were configured:
 
@@ -37,21 +37,21 @@ The following policies were configured:
 
 ### 3.2 HR-Specific Restrictions
 
-Three separate GPOs were created for the HR department:
+Three separate GPOs were configured for the HR department:
 
-| Policy | Purpose |
+| Policy | Description |
 |---|---|
-| Disable Control Panel | Prevents HR users from accessing Control Panel |
-| Disable CMD | Restricts access to Command Prompt |
-| Hide Run | Hides the Run command from the Start menu |
+| Disable Control Panel | Prevents HR users from accessing Control Panel. |
+| Disable CMD | Restricts access to Command Prompt. |
+| Hide Run | Hides the Run command from the Start menu. |
 
-These restrictions are intended for the HR department and are kept separate for easier policy management.
+These policies are intended to apply to the HR department only.
 
-### 3.3 Login Banner
+### 3.3 Login Security Banner
 
-A separate GPO was configured to display a login security banner before users sign in.
+A separate Group Policy was configured to display a security message before users sign in.
 
-This demonstrates the use of Windows security policies to display an organizational notice during the logon process.
+This policy demonstrates the use of Windows security settings to display an organizational notice during the logon process.
 
 ## 4. Applying Group Policies
 
@@ -64,8 +64,6 @@ gpupdate /force
 This command forces the client to refresh its Group Policy settings.
 
 ## 5. Screenshots & Evidence
-
-The following screenshots document the configuration and visible results of the lab.
 
 ### 5.1 GPO Configuration
 
@@ -108,10 +106,10 @@ The following screenshots document the configuration and visible results of the 
 - Windows security policy configuration.
 - Centralized administration using Group Policy Management.
 - Applying Group Policy updates using `gpupdate /force`.
-- Technical documentation and evidence collection.
+- Technical documentation and screenshot evidence collection.
 
 ## 7. Project Outcome
 
-This lab demonstrates how Group Policy can be used to apply centralized security standards across a Windows domain while maintaining separate restrictions for specific departments.
+This lab demonstrates how Group Policy can be used to enforce centralized security standards across a Windows domain while applying department-specific restrictions.
 
-It also highlights the importance of organizing GPOs according to their purpose and scope to simplify administration and future policy changes.
+It also demonstrates the importance of organizing GPOs according to their purpose and scope to simplify administration and future policy changes.
